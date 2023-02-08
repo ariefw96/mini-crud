@@ -1,5 +1,6 @@
 package com.example.bvk.service;
 
+import com.example.bvk.common.service.BaseService;
 import com.example.bvk.model.request.CartRequest;
 import com.example.bvk.model.response.ValidationReponse;
 import com.example.bvk.repository.CartRepository;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class RemoveFromCartService {
+public class RemoveFromCartService implements BaseService<CartRequest, ValidationReponse> {
 
     CartRepository cartRepository;
 

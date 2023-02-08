@@ -1,5 +1,6 @@
 package com.example.bvk.service;
 
+import com.example.bvk.common.service.BaseService;
 import com.example.bvk.model.entity.Cart;
 import com.example.bvk.model.request.FindByTrxIdRequest;
 import com.example.bvk.model.response.CartResponse;
@@ -17,7 +18,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 @Slf4j
 @Service
-public class GetCartByTrxId {
+public class GetCartByTrxId implements BaseService<FindByTrxIdRequest, CartResponse> {
 
     CartRepository cartRepository;
 
@@ -25,6 +26,7 @@ public class GetCartByTrxId {
         this.cartRepository = cartRepository;
     }
 
+    @Override
     public CartResponse execute(FindByTrxIdRequest findByTrxIdRequest){
         this.doValidateRequest(findByTrxIdRequest);
         List<Cart> cartList = cartRepository.getCartByTrxId(findByTrxIdRequest.trxId);

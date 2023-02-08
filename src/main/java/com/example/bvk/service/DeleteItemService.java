@@ -1,5 +1,6 @@
 package com.example.bvk.service;
 
+import com.example.bvk.common.service.BaseService;
 import com.example.bvk.model.entity.Item;
 import com.example.bvk.model.request.FindByIdRequest;
 import com.example.bvk.model.response.ValidationReponse;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class DeleteItemService {
+public class DeleteItemService implements BaseService<FindByIdRequest, ValidationReponse> {
 
     ItemRepository itemRepository;
     GetItemByIdService getItemByIdService;
@@ -29,9 +30,9 @@ public class DeleteItemService {
 
         Item item = getItemByIdService.execute(input).getContent();
         this.doValidateIsDelete(item);
-        cartRepository.checkItemsOnCart(input.getId()).ifPresent(data -> {
+        if(cartRepository.checkItemsOnCart(input.getId()) > 0){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Item exist in cart");
-        });
+        }
         item.setIsActive(Boolean.FALSE);
         itemRepository.save(item);
 

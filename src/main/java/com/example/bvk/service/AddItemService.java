@@ -1,5 +1,6 @@
 package com.example.bvk.service;
 
+import com.example.bvk.common.service.BaseService;
 import com.example.bvk.model.entity.Item;
 import com.example.bvk.model.request.ItemRequest;
 import com.example.bvk.model.response.ValidationReponse;
@@ -10,7 +11,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class AddItemService {
+public class AddItemService implements BaseService<ItemRequest, ValidationReponse> {
 
     private ItemRepository itemRepository;
 
@@ -18,7 +19,8 @@ public class AddItemService {
         this.itemRepository = itemRepository;
     }
 
-    public ValidationReponse saveItem(ItemRequest input){
+    @Override
+    public ValidationReponse execute(ItemRequest input){
         this.doValidateRequest(input);
 
         Item item = new Item();
@@ -53,4 +55,5 @@ public class AddItemService {
         }
 
     }
+
 }

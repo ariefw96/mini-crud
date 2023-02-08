@@ -1,8 +1,9 @@
 package com.example.bvk.service;
 
+import com.example.bvk.common.service.BaseService;
 import com.example.bvk.model.entity.Item;
 import com.example.bvk.model.request.SpecificationRequest;
-import com.example.bvk.model.response.ItemListReponse;
+import com.example.bvk.model.response.ItemListResponse;
 import com.example.bvk.repository.ItemRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class GetAllItemService {
+public class GetAllItemService implements BaseService<SpecificationRequest, ItemListResponse> {
 
     ItemRepository itemRepository;
 
@@ -20,9 +21,10 @@ public class GetAllItemService {
         this.itemRepository = itemRepository;
     }
 
-    public ItemListReponse execute(SpecificationRequest input){
+    @Override
+    public ItemListResponse execute(SpecificationRequest input){
         Page<Item> itemList = itemRepository.findAll(input.getSpecification(), input.getPageable());
-        return ItemListReponse.builder()
+        return ItemListResponse.builder()
                 .page(itemList)
                 .build();
     }

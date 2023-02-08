@@ -9,9 +9,8 @@ import com.example.bvk.service.GetAllItemService;
 import com.example.bvk.service.GetItemByIdService;
 import com.example.bvk.service.AddItemService;
 import com.example.bvk.utils.Constant;
-import com.example.bvk.utils.RestResponse;
+import com.example.bvk.common.model.RestResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -84,7 +83,7 @@ public class ItemController {
         RestResponse response = new RestResponse(
                 null,
                 Constant.DATA_SUBMITTED,
-                addItemService.saveItem(itemRequest).getResult()
+                addItemService.execute(itemRequest).getResult()
         );
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

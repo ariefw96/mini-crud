@@ -1,20 +1,15 @@
 package com.example.bvk.controller;
 
-import com.example.bvk.model.entity.Cart;
 import com.example.bvk.model.request.CartRequest;
 import com.example.bvk.model.request.FindByTrxIdRequest;
-import com.example.bvk.repository.CartRepository;
 import com.example.bvk.service.AddToCartService;
 import com.example.bvk.service.GetCartByTrxId;
 import com.example.bvk.service.RemoveFromCartService;
 import com.example.bvk.utils.Constant;
-import com.example.bvk.utils.RestResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.bvk.common.model.RestResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/cart")

@@ -1,4 +1,4 @@
-package com.example.bvk.utils;
+package com.example.bvk.common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

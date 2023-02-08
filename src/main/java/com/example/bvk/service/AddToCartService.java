@@ -1,6 +1,7 @@
 package com.example.bvk.service;
 
 
+import com.example.bvk.common.service.BaseService;
 import com.example.bvk.model.entity.Cart;
 import com.example.bvk.model.entity.Item;
 import com.example.bvk.model.request.CartRequest;
@@ -18,7 +19,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 @Slf4j
 @Service
-public class AddToCartService {
+public class AddToCartService implements BaseService<CartRequest, ValidationReponse> {
 
     CartRepository cartRepository;
     ItemRepository itemRepository;
@@ -30,6 +31,7 @@ public class AddToCartService {
         this.commonUtility = commonUtility;
     }
 
+    @Override
     public ValidationReponse execute(CartRequest cartRequest){
         this.doValidateCart(cartRequest);
         AtomicReference<Item> itemAtomicReference = new AtomicReference<>();
