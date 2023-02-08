@@ -1,13 +1,7 @@
 package com.example.bvk.controller;
 
-import com.example.bvk.model.request.FindByIdRequest;
-import com.example.bvk.model.request.ItemRequest;
-import com.example.bvk.model.request.SearchRequest;
-import com.example.bvk.model.request.SpecificationRequest;
-import com.example.bvk.service.DeleteItemService;
-import com.example.bvk.service.GetAllItemService;
-import com.example.bvk.service.GetItemByIdService;
-import com.example.bvk.service.AddItemService;
+import com.example.bvk.model.request.*;
+import com.example.bvk.service.*;
 import com.example.bvk.utils.Constant;
 import com.example.bvk.common.model.RestResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -31,17 +25,19 @@ import java.util.List;
 @Slf4j
 public class ItemController {
 
-
     private AddItemService addItemService;
     private GetAllItemService getAllItemService;
     private DeleteItemService deleteItemService;
     private GetItemByIdService getItemByIdService;
+    private UpdateItemService updateItemService;
 
-    public ItemController(AddItemService addItemService, GetAllItemService getAllItemService, DeleteItemService deleteItemService, GetItemByIdService getItemByIdService) {
+    public ItemController(AddItemService addItemService, GetAllItemService getAllItemService, DeleteItemService deleteItemService,
+                          GetItemByIdService getItemByIdService, UpdateItemService updateItemService) {
         this.addItemService = addItemService;
         this.getAllItemService = getAllItemService;
         this.deleteItemService = deleteItemService;
         this.getItemByIdService = getItemByIdService;
+        this.updateItemService = updateItemService;
     }
 
     @GetMapping("/get")
@@ -90,9 +86,16 @@ public class ItemController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Object> updateItem(
-            @PathVariable("id") Long id
+            @PathVariable("id") Long id,
+            @RequestBody UpdateItemRequest updateItemRequest
     ){
-        return ResponseEntity.ok().body("This feature under development");
+        updateItemRequest.setId(id);
+        RestResponse response = new RestResponse(
+                null,
+                Constant.DATE_UPDATED,
+                updateItemService.execute(updateItemRequest).getResult()
+        );
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
