@@ -20,7 +20,7 @@ Sebuah simple project Spring Boot yang digenerate melalui [Spring generator](htt
 
 ## Features
 
-- CR(tidak dengan U)D Item
+- CRUD Item
 - Add/Remove Item to/from Cart
 - Get Cart ( including finalize price)
 
