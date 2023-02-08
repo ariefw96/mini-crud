@@ -12,7 +12,7 @@ Sebuah simple project Spring Boot yang digenerate melalui [Spring generator](htt
 ## Installation
 
 1. Buka terminal / cmd
-2. Clone repository menggunakan command ``https://github.com/ariefw96/mini-crud.git``
+2. Clone repository menggunakan command ``git clone https://github.com/ariefw96/mini-crud.git``
 3. Import project ke dalam intellij / eclipse
 4. Tunggu hingga dependensi otomatis terdownload
 5. setup JDK
