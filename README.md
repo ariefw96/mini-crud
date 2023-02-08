@@ -6,7 +6,6 @@ Sebuah simple project Spring Boot yang digenerate melalui [Spring generator](htt
 
 - [`Spring Initializr`](https://start.spring.io/)
 - [`Free RemoteMySQL`](freemysqlhosting.net)
-- [`Remote MySQL`](remotemysql.com)
 - [`JDK`](https://www.oracle.com/java/technologies/downloads/)
 
 
