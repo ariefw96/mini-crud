@@ -28,4 +28,7 @@ Sebuah simple project Spring Boot yang digenerate melalui [Spring generator](htt
 
 - Berjalan default pada port 8080
 
+## Documentation
+
+- Swagger dapat diakses pada URL http://localhost:{PORT}/swagger-ui/#/
 
