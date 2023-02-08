@@ -9,7 +9,6 @@ import com.example.bvk.repository.CartRepository;
 import com.example.bvk.repository.ItemRepository;
 import com.example.bvk.utils.CommonUtility;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -45,13 +44,14 @@ public class AddToCartService {
         Cart cart = cartRepository.getItemOnCart(cartRequest.getTrxId(), cartRequest.getItemId()).orElse(new Cart());
         log.info("Cart = {}", cart);
         if(ObjectUtils.isEmpty(cart.getTrxId())){
+            this.setId(cart);
             cart.setItem(itemAtomicReference.get());
             cart.setTrxId(cartRequest.getTrxId());
             cart.setQty(cartRequest.getQty());
         }else{
             cart.setQty(cart.getQty() + cartRequest.getQty());
         }
-
+        log.info("Cart request = {}",cart);
         cartRepository.save(cart);
 
         return ValidationReponse.builder()
@@ -69,6 +69,16 @@ public class AddToCartService {
         if(ObjectUtils.isEmpty(input.getQty())){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Quantity cannot be empty");
         }
+    }
+
+    private void setId(Cart cart){
+        Long id = cartRepository.selectMaxId();
+        if(ObjectUtils.isEmpty(id)){
+            cart.setId(1L);
+        }else{
+            cart.setId(id+1);
+        }
+
     }
 
 }

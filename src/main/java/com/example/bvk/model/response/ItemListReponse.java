@@ -1,15 +1,14 @@
 package com.example.bvk.model.response;
 
-import com.example.bvk.model.entity.Item;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.data.domain.Page;
 
-import java.util.List;
 
 @Builder
 @Data
 public class ItemListReponse {
 
-    List<Item> content;
+    private Page page;
 
 }

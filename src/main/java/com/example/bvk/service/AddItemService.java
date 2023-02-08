@@ -10,11 +10,11 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class SaveItemService {
+public class AddItemService {
 
     private ItemRepository itemRepository;
 
-    public SaveItemService(ItemRepository itemRepository) {
+    public AddItemService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
     }
 

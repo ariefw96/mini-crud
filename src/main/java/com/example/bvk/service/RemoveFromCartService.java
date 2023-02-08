@@ -20,11 +20,11 @@ public class RemoveFromCartService {
 
     public ValidationReponse execute(CartRequest cartRequest){
 
-        Optional <Cart> cart = cartRepository.getItemOnCart(cartRequest.getTrxId(), cartRequest.getItemId());
-        if(ObjectUtils.isEmpty(cart.get())){
+        cartRepository.getItemOnCart(cartRequest.getTrxId(), cartRequest.getItemId()).ifPresentOrElse(data -> {
+            cartRepository.doDeleteItemOnCart(cartRequest.getTrxId(), cartRequest.getItemId());
+        }, () -> {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Item not found on cart");
-        }
-        cartRepository.doDeleteItemOnCart(cartRequest.getTrxId(), cartRequest.getItemId());
+        });
         return ValidationReponse.builder()
                 .result(Boolean.TRUE)
                 .build();

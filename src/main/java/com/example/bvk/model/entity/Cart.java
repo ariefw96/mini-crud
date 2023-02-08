@@ -19,7 +19,7 @@ public class Cart {
     private String trxId;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @MapsId
+    @JoinColumn(name = "item_id")
     private Item item;
 
     @Column(name = "qty")
