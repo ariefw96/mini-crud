@@ -33,17 +33,17 @@ import java.util.List;
 public class ItemController {
 
 
-    @Autowired
     private AddItemService addItemService;
-
-    @Autowired
     private GetAllItemService getAllItemService;
-
-    @Autowired
     private DeleteItemService deleteItemService;
-
-    @Autowired
     private GetItemByIdService getItemByIdService;
+
+    public ItemController(AddItemService addItemService, GetAllItemService getAllItemService, DeleteItemService deleteItemService, GetItemByIdService getItemByIdService) {
+        this.addItemService = addItemService;
+        this.getAllItemService = getAllItemService;
+        this.deleteItemService = deleteItemService;
+        this.getItemByIdService = getItemByIdService;
+    }
 
     @GetMapping("/get")
     public ResponseEntity<RestResponse> getItem(

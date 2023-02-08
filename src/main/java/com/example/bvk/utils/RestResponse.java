@@ -6,7 +6,9 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class RestResponse {
+
     private Object data;
     private String message;
     private Boolean result;
+
 }

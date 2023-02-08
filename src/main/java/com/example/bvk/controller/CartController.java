@@ -20,14 +20,15 @@ import java.util.List;
 @RequestMapping("api/v1/cart")
 public class CartController {
 
-    @Autowired
     AddToCartService addToCartService;
-
-    @Autowired
     GetCartByTrxId getCartByTrxId;
-
-    @Autowired
     RemoveFromCartService removeFromCartService;
+
+    public CartController(AddToCartService addToCartService, GetCartByTrxId getCartByTrxId, RemoveFromCartService removeFromCartService) {
+        this.addToCartService = addToCartService;
+        this.getCartByTrxId = getCartByTrxId;
+        this.removeFromCartService = removeFromCartService;
+    }
 
     @GetMapping("/get/{trxId}")
     public ResponseEntity<Object> getCart(

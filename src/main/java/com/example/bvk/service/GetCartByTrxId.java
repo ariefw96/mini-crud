@@ -19,8 +19,11 @@ import java.util.concurrent.atomic.AtomicReference;
 @Service
 public class GetCartByTrxId {
 
-    @Autowired
     CartRepository cartRepository;
+
+    public GetCartByTrxId(CartRepository cartRepository) {
+        this.cartRepository = cartRepository;
+    }
 
     public CartResponse execute(FindByTrxIdRequest findByTrxIdRequest){
         this.doValidateRequest(findByTrxIdRequest);
