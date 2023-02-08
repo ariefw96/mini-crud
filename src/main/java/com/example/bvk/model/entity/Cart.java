@@ -15,6 +15,7 @@ public class Cart {
     @Column(name = "id")
     private Long id;
 
+    @JsonIgnore
     @Column(name = "trx_id")
     private String trxId;
 
