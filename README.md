@@ -42,4 +42,5 @@ YOUR_SQL_PASSWORD=VaXsNm5ZaE
 
 - Swagger dapat diakses pada URL http://localhost:{PORT}/swagger-ui/#/
 
-## Related project [`Spring server`] (https://github.com/ariefw96/spring-server)
+## Related project 
+- [`Spring server`] (https://github.com/ariefw96/spring-server)
