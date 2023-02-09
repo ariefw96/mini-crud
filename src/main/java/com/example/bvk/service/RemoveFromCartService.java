@@ -13,9 +13,13 @@ public class RemoveFromCartService implements BaseService<CartRequest, Validatio
 
     CartRepository cartRepository;
 
+    public RemoveFromCartService(CartRepository cartRepository) {
+        this.cartRepository = cartRepository;
+    }
+
     public ValidationReponse execute(CartRequest cartRequest){
 
-        cartRepository.getItemOnCart(cartRequest.getTrxId(), cartRequest.getItemId()).ifPresentOrElse(data -> {
+        cartRepository.getItemOnCart(cartRequest.getTrxId().toLowerCase(), cartRequest.getItemId()).ifPresentOrElse(data -> {
             cartRepository.doDeleteItemOnCart(cartRequest.getTrxId(), cartRequest.getItemId());
         }, () -> {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Item not found on cart");

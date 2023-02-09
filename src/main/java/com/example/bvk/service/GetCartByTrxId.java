@@ -29,7 +29,7 @@ public class GetCartByTrxId implements BaseService<FindByTrxIdRequest, CartRespo
     @Override
     public CartResponse execute(FindByTrxIdRequest findByTrxIdRequest){
         this.doValidateRequest(findByTrxIdRequest);
-        List<Cart> cartList = cartRepository.getCartByTrxId(findByTrxIdRequest.trxId);
+        List<Cart> cartList = cartRepository.getCartByTrxId(findByTrxIdRequest.getTrxId().toLowerCase());
         log.info("cart response = {}", cartList);
         return CartResponse.builder()
                 .trxId(findByTrxIdRequest.getTrxId())

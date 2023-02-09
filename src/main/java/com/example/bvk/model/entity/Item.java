@@ -1,5 +1,7 @@
 package com.example.bvk.model.entity;
 
+import com.example.bvk.common.model.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -11,7 +13,8 @@ import java.math.BigDecimal;
 @Data
 @Entity
 @Table(name = "item")
-public class Item {
+@JsonPropertyOrder({"id","itemName","price","isActive","createdDate","updatedDate"})
+public class Item extends BaseEntity {
 
     @Id
     @Column(name = "id")

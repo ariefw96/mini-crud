@@ -13,5 +13,4 @@ public class SpecificationRequest extends BaseRequest {
 
     private Specification specification;
     private Pageable pageable;
-    private Boolean isActive = Boolean.FALSE;
 }

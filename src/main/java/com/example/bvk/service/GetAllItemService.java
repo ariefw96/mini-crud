@@ -8,8 +8,6 @@ import com.example.bvk.repository.ItemRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -27,10 +25,6 @@ public class GetAllItemService implements BaseService<SpecificationRequest, Item
         return ItemListResponse.builder()
                 .page(itemList)
                 .build();
-    }
-
-    private List<Item> doFilterIsActive(List<Item> listItem){
-        return listItem.stream().filter(Item::getIsActive).collect(Collectors.toList());
     }
 
 }

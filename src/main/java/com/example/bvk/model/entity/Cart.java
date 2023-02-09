@@ -1,6 +1,8 @@
 package com.example.bvk.model.entity;
 
+import com.example.bvk.common.model.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -8,7 +10,8 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "cart")
-public class Cart {
+@JsonPropertyOrder({"trxId","item","qty","createdDate","updatedDate"})
+public class Cart extends BaseEntity {
 
     @Id
     @JsonIgnore

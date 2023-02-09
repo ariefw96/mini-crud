@@ -7,6 +7,7 @@ import com.example.bvk.service.GetCartByTrxId;
 import com.example.bvk.service.RemoveFromCartService;
 import com.example.bvk.utils.Constant;
 import com.example.bvk.common.model.RestResponse;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ public class CartController {
         this.removeFromCartService = removeFromCartService;
     }
 
+    @ApiOperation(value = "Get Cart by its TrxId",notes = "Get list items on cart based on transcationId")
     @GetMapping("/get/{trxId}")
     public ResponseEntity<Object> getCart(
             @PathVariable("trxId") String trxId
@@ -37,6 +39,7 @@ public class CartController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Add item to cart",notes = "API to add item to cart based on trxId")
     @PostMapping("/add")
     public ResponseEntity<Object> addToCart(
             @RequestBody CartRequest cartRequest
@@ -49,6 +52,7 @@ public class CartController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Remove item from cart",notes = "API to remove item on cart based on item id and Transaction Id")
     @PostMapping("/remove")
     public ResponseEntity<Object> removeFromCart(
             @RequestBody CartRequest cartRequest

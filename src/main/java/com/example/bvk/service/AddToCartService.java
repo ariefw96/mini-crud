@@ -43,7 +43,7 @@ public class AddToCartService implements BaseService<CartRequest, ValidationRepo
                     throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item not found");
                 }
         );
-        Cart cart = cartRepository.getItemOnCart(cartRequest.getTrxId(), cartRequest.getItemId()).orElse(new Cart());
+        Cart cart = cartRepository.getItemOnCart(cartRequest.getTrxId().toLowerCase(), cartRequest.getItemId()).orElse(new Cart());
         log.info("Cart = {}", cart);
         if(ObjectUtils.isEmpty(cart.getTrxId())){
             this.setId(cart);
