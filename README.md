@@ -26,7 +26,7 @@ Sebuah simple project Spring Boot yang digenerate melalui [Spring generator](htt
 
 ## Notes
 
-- Berjalan default pada port 8080
+- Berjalan default pada port 8080, untuk mengubah tambahkan property ``server.port={YOUR_PORT}`` pada application.properties
 
 ## Documentation
 
